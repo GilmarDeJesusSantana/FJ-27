@@ -15,7 +15,8 @@
 <body>
 
     <c:url var="linkToSaveProduct" value="/products"/>
-    <form:form action="${linkToSaveProduct}" method="post" commandName="product">
+    <form:form action="${linkToSaveProduct}" method="post" commandName="product"
+    			enctype="multipart/form-data">
         <div>
             <label>Titulo</label>
 
@@ -45,7 +46,11 @@
             <label> Data de lancamento: </label>
             <form:input path="releaseDate" type="date" name="releaseDate"/>
         </div>
-
+		         <div>
+             <label for="summary">Sumario do livro</label>
+             <input type="file" name="summary" id="summary"/>
+             <form:errors path="summaryPath"/>
+         </div>
 
             <c:forEach items="${tiposLivros}" var="tipo" varStatus="status">
         <div>
@@ -55,7 +60,7 @@
         </div>
             </c:forEach>
 
-
+		
 
 
         <input type="submit" value="Salvar"/>

@@ -23,7 +23,7 @@
 
         <c:forEach items="${books}" var="book">
             <tr>
-                <td>${book.title}</td>
+                <td> <a href="${linkDetalhar}">${book.title}</a></td>
                 <td>${book.author}</td>
                 <td>${book.numberOfPages}</td>
                 <td>

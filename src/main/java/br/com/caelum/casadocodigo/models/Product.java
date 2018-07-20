@@ -7,14 +7,26 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Product {
+	
+	private String summaryPath;
+    
+	public String getSummaryPath() {
+		return summaryPath;
+	}
 
-    @Id
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

@@ -10,14 +10,19 @@ import java.util.List;
 @Repository
 public class ProductDao {
 
-    @PersistenceContext private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    public void save(Product product) {
-        em.persist(product);
-    }
+	public Product getById(Integer id) {
+		return em.createQuery("select distinct(p) from Product p join fetch p.prices where p.id = : id", Product.class)
+				.setParameter("id", id).getSingleResult();
+	}
 
-    public List<Product> listAll() {
-        return em.createQuery("select distinct(p) from Product p join fetch p.prices", Product.class)
-                .getResultList();
-    }
+	public void save(Product product) {
+		em.persist(product);
+	}
+
+	public List<Product> listAll() {
+		return em.createQuery("select distinct(p) from Product p join fetch p.prices", Product.class).getResultList();
+	}
 }

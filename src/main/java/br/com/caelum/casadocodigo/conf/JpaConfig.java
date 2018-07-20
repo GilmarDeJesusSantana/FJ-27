@@ -45,7 +45,7 @@ public class JpaConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setPassword("caelum");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return dataSource;
     }
