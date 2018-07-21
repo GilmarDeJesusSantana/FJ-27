@@ -22,6 +22,7 @@
         <th>Tipos</th>
 
         <c:forEach items="${books}" var="book">
+        <c:url value="/products/${book.id}" var="linkDetalhar"></c:url>
             <tr>
                 <td> <a href="${linkDetalhar}">${book.title}</a></td>
                 <td>${book.author}</td>

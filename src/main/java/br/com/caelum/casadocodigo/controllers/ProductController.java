@@ -45,8 +45,8 @@ public class ProductController {
 	// ModelAndView view= new ModelAndView("products/show.jsp");
 	// productDao.getByid;
 	// }
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ModelAndView show(@PathVariable("id") Integer id) {
+	@RequestMapping("{id}")
+	public ModelAndView show(@PathVariable("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView("product/show");
 		modelAndView.addObject("product", productDao.getById(id));
 		return modelAndView;

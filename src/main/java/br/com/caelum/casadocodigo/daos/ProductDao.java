@@ -13,8 +13,13 @@ public class ProductDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Product getById(Integer id) {
-		return em.createQuery("select distinct(p) from Product p join fetch p.prices where p.id = : id", Product.class)
+	public Product getById(Long id) {
+		return em.createQuery("select distinct(p) from Product p join fetch p.prices where p.id =:id", Product.class)
+				.setParameter("id", id).getSingleResult();
+	}
+	
+	public Product getFindById(Integer id) {
+		return em.createQuery("select distinct(p) from Product p join fetch p.prices where p.id =:id", Product.class)
 				.setParameter("id", id).getSingleResult();
 	}
 
