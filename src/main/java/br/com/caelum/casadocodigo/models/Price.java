@@ -33,4 +33,9 @@ public class Price {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+	public BigDecimal getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

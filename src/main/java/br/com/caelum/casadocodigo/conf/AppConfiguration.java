@@ -3,6 +3,7 @@ package br.com.caelum.casadocodigo.conf;
 import br.com.caelum.casadocodigo.controllers.HomeController;
 import br.com.caelum.casadocodigo.daos.ProductDao;
 import br.com.caelum.casadocodigo.infra.FileSaver;
+import br.com.caelum.casadocodigo.models.ShoppingCart;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { HomeController.class, ProductDao.class, FileSaver.class})
+@ComponentScan(basePackageClasses = { HomeController.class, ProductDao.class, FileSaver.class,ShoppingCart.class})
 public class AppConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean

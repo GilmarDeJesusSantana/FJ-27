@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -114,4 +115,11 @@ public class Product {
     public void setNumberOfPages(Integer numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
+
+	public BigDecimal priceFor(BookType bookType) {
+		return prices
+			  .stream()
+			  .filter(price -> price.getBookType().equals(bookType))
+			  .findFirst().get().getValue();
+	}
 }
