@@ -2,12 +2,17 @@ package br.com.caelum.casadocodigo.models;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import java.math.BigDecimal;
 
 @Embeddable
 public class Price {
 
+//	@Enumerated(EnumType.STRING)
     private BookType bookType;
+	
     private BigDecimal price;
 
     @Override
@@ -35,7 +40,6 @@ public class Price {
     }
 
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return price;
 	}
 }

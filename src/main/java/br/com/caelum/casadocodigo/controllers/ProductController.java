@@ -72,7 +72,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView view = new ModelAndView("product/list");
-		view.addObject("books", productDao.listAll());
+		view.addObject("books", productDao.list());
 		return view;
 	}
 }
