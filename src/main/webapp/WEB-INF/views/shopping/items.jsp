@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Carrinho de Compras</title>
 	
-  <c:url value="/" var="contextPath" />
+  <c:url value="/shopping" var="contextPath" />
 	
 	<link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
 	<link href="https://plus.googlecom/108540024862647200608" rel="publisher"/>

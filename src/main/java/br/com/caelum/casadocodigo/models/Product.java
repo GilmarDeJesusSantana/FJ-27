@@ -16,9 +16,9 @@ import java.util.List;
 
 @Entity
 public class Product {
-	
+
 	private String summaryPath;
-    
+
 	public String getSummaryPath() {
 		return summaryPath;
 	}
@@ -28,98 +28,103 @@ public class Product {
 	}
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @NotEmpty
-    private String title;
+	@NotEmpty
+	private String title;
 
-    @Lob
-    @NotEmpty
-    private String description;
+	@Lob
+	@NotEmpty
+	private String description;
 
-    @NotEmpty
-    private String author;
+	@NotEmpty
+	private String author;
 
-    @Min(1)
-    @Max(500)
-    private Integer numberOfPages;
+	@Min(1)
+	@Max(500)
+	private Integer numberOfPages;
 
-    @ElementCollection
-    private List<Price> prices;
+	@ElementCollection
+	private List<Price> prices;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Calendar releaseDate;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private Calendar releaseDate;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "titulo='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", numberOfPages=" + numberOfPages +
-                "prices = " + prices.toString() +
-                "data = " + releaseDate +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Product{" + "titulo='" + title + '\'' + ", description='" + description + '\'' + ", author='" + author
+				+ '\'' + ", numberOfPages=" + numberOfPages + "prices = " + prices.toString() + "data = " + releaseDate
+				+ '}';
+	}
 
+	public Calendar getReleaseDate() {
+		return releaseDate;
+	}
 
-    public Calendar getReleaseDate() {
-        return releaseDate;
-    }
+	public void setReleaseDate(Calendar releaseDate) {
+		this.releaseDate = releaseDate;
+	}
 
-    public void setReleaseDate(Calendar releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+	public List<Price> getPrices() {
+		return prices;
+	}
 
-    public List<Price> getPrices() {
-        return prices;
-    }
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
+	}
 
-    public void setPrices(List<Price> prices) {
-        this.prices = prices;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public Integer getNumberOfPages() {
+		return numberOfPages;
+	}
 
-    public Integer getNumberOfPages() {
-        return numberOfPages;
-    }
+	public void setNumberOfPages(Integer numberOfPages) {
+		this.numberOfPages = numberOfPages;
+	}
 
-    public void setNumberOfPages(Integer numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
+	// public BigDecimal priceFor(BookType bookType) {
+	// return prices
+	// .stream()
+	// .filter(price -> price.getBookType().equals(bookType))
+	// .findFirst().get().getValue();
+	// }
 
 	public BigDecimal priceFor(BookType bookType) {
-		return prices
-			  .stream()
-			  .filter(price -> price.getBookType().equals(bookType))
-			  .findFirst().get().getValue();
+		BigDecimal valor = null;
+		for (Price price : prices) {
+			if (price.getBookType().equals(bookType)) {
+				valor = price.getValue();
+			}
+		}
+		return valor;
 	}
+
 }
