@@ -9,12 +9,12 @@ import javax.servlet.ServletRegistration.Dynamic;
 public class ServletDoSpring extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[]{ AppConfiguration.class, JpaConfig.class,SpringSecurityConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppConfiguration.class, JpaConfig.class };
+		return new Class[] { };
 	}
 
 	@Override
