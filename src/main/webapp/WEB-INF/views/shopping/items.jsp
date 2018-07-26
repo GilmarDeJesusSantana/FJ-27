@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Carrinho de Compras</title>
 	
-  <c:url value="/shopping" var="contextPath" />
+  <c:url value="/" var="contextPath" />
 	
 	<link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
 	<link href="https://plus.googlecom/108540024862647200608" rel="publisher"/>
@@ -106,7 +106,7 @@
 				<tr>
 					<td colspan="2">
 						<c:url value="/shopping/checkout" var="checkoutUrl"/>
-						<form:form action="${checkoutUrl}" method="post">
+						<form:form servletRelativeAction="/shopping/checkout" method="post" cssClass="container">
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" id="checkout" />
 						</form:form>
 					</td>

@@ -24,7 +24,7 @@ public class User implements UserDetails {
 	private String name;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Perfil> roles = new ArrayList<>();
+	private List<Role> roles = new ArrayList<>();
 
 	public void setPassword(String password) {
 		this.password = password;

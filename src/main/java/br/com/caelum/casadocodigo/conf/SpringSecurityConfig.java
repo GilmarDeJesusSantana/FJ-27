@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.com.caelum.casadocodigo.daos.UserDao;
 import br.com.caelum.casadocodigo.services.UserServices;
@@ -23,8 +24,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
-				.antMatchers("/products/form").hasRole("ADMIN").antMatchers("/products", "/products/**").permitAll()
-				.antMatchers("/shopping/**").permitAll().anyRequest().authenticated().and().formLogin();
+				.antMatchers("/products/form").hasRole("ADMIN")
+				.antMatchers("/products", "/products/**").permitAll()
+				.antMatchers("/shopping/**").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.formLogin().loginPage("/login").defaultSuccessUrl("/products").permitAll()
+				.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/loggout"))
+				.logoutSuccessUrl("/products")
+				.permitAll()
+				.and()
+				.exceptionHandling()
+				.accessDeniedPage("/WEB-INF/views/errors/403.jsp");
 	}
 
 	@Override
