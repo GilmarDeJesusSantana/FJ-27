@@ -25,9 +25,8 @@
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="user"/>
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
-<%-- 	${spring:mvcUrl('PC#form').build()} --%>
-	<c:url value="/products/form" var="formLink"/>
-	<a href="${formLink}" method=post>Cadastrar Produto</a>
+	<!--Este erro e um bug do eclipse, a aplicacao funciona. -->
+	<a href="${spring:mvcUrl('PC#form').build()}" method=post>Cadastrar Produto</a>
 	</sec:authorize>
 	
 	<c:url var="urlToLogout" value="/logout"/>

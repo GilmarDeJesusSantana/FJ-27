@@ -42,6 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		System.out.println("add public resources files");
 		web.ignoring().antMatchers("/resources/**");
 	}
 
