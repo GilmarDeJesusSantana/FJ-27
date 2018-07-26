@@ -7,24 +7,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib  prefix="cdc" tagdir="WEB-INF/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="cdc" tagdir="/WEB-INF/tags"%>
 
-<html>
-<head>
-    <title>Listagem de Produtos</title>
-</head>
+<cdc:page title="Listagem de Produtos">
+	<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="user"/>
+    <div>
+       Olá ${user.name}
+    </div>
+    </sec:authorize>
+           
+
+
 <body>
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="user"/>
-	<div>
-      Olá ${user.name}
-	</div>
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 <%-- 	${spring:mvcUrl('PC#form').build()} --%>
 	<c:url value="/products/form" var="formLink"/>
-	<a href="${formLink}">Cadastrar Produto</a>
+	<a href="${formLink}" method=post>Cadastrar Produto</a>
 	</sec:authorize>
 	
 	<c:url var="urlToLogout" value="/logout"/>
@@ -58,4 +61,4 @@
 
     </table>
 </body>
-</html>
+</cdc:page>

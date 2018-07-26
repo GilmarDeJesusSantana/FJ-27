@@ -9,10 +9,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html>
-<head>
-    <title>Cadastro de Livro</title>
-</head>
+<%@ taglib prefix="cdc" tagdir="/WEB-INF/tags"%>
+<cdc:page title="Cadastro de Produtos">
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="user"/>
+    <div>
+       Olá ${user.name}
+    </div>
+    </sec:authorize>
+
+
 <body>
 
     <form:form servletRelativeAction="/products" method="post" commandName="product"
@@ -67,4 +74,4 @@
         <input type="submit" value="Salvar"/>
     </form:form>
 </body>
-</html>
+</cdc:page>
