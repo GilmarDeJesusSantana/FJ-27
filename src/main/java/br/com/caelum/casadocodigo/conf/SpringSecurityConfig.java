@@ -24,7 +24,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
-				.antMatchers("/products/form").hasRole("ADMIN")
+				.antMatchers("/products/form/**").hasRole("ADMIN")
 				.antMatchers("/products", "/products/**").permitAll()
 				.antMatchers("/shopping/**").permitAll()
 				.anyRequest().authenticated()
