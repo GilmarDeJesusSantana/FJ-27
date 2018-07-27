@@ -42,4 +42,8 @@ public class Price {
 	public BigDecimal getValue() {
 		return price;
 	}
+
+	public void setValue(BigDecimal value) {
+		this.price = value;
+	}
 }
