@@ -7,11 +7,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Listagem de Produtos</title>
-</head>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="cdc" tagdir="/WEB-INF/tags"%>
+
+<cdc:page title="Listagem de Produtos">
+	<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="user"/>
+    <div>
+<%--        Olá ${user.name} --%>
+       <spring:message code="usuario.bemvindo" arguments="${user.name}">
+       </spring:message>
+    </div>
+    </sec:authorize>
+           
+
+
 <body>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="user"/>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<!--Este erro e um bug do eclipse, a aplicacao funciona. -->
+	<a href="${spring:mvcUrl('PC#form').build()}" method=post>Cadastrar Produto</a>
+	</sec:authorize>
+	
+	<c:url var="urlToLogout" value="/logout"/>
+	<a href="${urlToLogout}">Sair</a>
+	
+</sec:authorize>
+
     <h1> Listagem de Livros </h1>
 
     ${success}
@@ -38,4 +62,4 @@
 
     </table>
 </body>
-</html>
+</cdc:page>

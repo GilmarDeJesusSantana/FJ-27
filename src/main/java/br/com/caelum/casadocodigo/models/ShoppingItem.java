@@ -25,6 +25,9 @@ public class ShoppingItem implements Serializable {
 	}
 	
 	public BigDecimal getPrice() {
+		BigDecimal valor = product.priceFor(bookType);
+		System.out.println("Valor : " + valor);
+		
 		return product.priceFor(bookType);
 	}
 	

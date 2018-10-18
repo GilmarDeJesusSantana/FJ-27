@@ -1,6 +1,7 @@
 package br.com.caelum.casadocodigo.conf;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,9 +23,9 @@ public class JpaConfig {
         return jpaTransactionManager;
     }
     @Bean
-    public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean managerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        managerFactoryBean.setDataSource(dataSource());
+        managerFactoryBean.setDataSource(dataSource);
         managerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         managerFactoryBean.setJpaProperties(myJpaConfig());
         managerFactoryBean.setPackagesToScan("br.com.caelum.casadocodigo.models");
@@ -41,6 +42,7 @@ public class JpaConfig {
     }
 
     @Bean
+    @Profile("dev")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo?createDatabaseIfNotExist=true");
